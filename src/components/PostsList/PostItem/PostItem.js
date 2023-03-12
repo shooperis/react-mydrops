@@ -1,3 +1,5 @@
+import { prettyDate } from './../../../utils/functions';
+
 const PostItem = (props) => {
   const {id, content, type, createdDate} = props;
 
@@ -21,7 +23,7 @@ const PostItem = (props) => {
           {type}
         </div>
         <div className="date">
-          {createdDate}
+          {prettyDate(createdDate)}
         </div>
       </div>
       <div className="control-wrapper">
