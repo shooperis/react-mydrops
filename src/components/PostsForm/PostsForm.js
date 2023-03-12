@@ -1,6 +1,5 @@
 import './PostsForm.scss';
 import { useState } from 'react';
-import TRANSLATION from './../../utils/language';
 
 const PostsForm = () => {
   const [inputData, setInputData] = useState('');
@@ -30,7 +29,7 @@ const PostsForm = () => {
         <div className="textarea-wrapper">
           <textarea 
             name="input-data" 
-            placeholder={TRANSLATION.form.input.placeholder} 
+            placeholder="Enter link, video link or text..."
             className="error"
             value={inputData}
             onChange={onInputDataChange}
@@ -38,7 +37,7 @@ const PostsForm = () => {
         </div>
       </div>
       <div className="right">
-        <button className="button">{TRANSLATION.form.submit.text}</button>
+        <button className="button">Drop</button>
       </div>
     </form>
   )
