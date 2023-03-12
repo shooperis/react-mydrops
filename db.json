@@ -26,22 +26,6 @@
       "id": 8
     },
     {
-      "key": "48eb76db-d144-47d6-8ae0-9ca78d341197",
-      "type": "text",
-      "content": "Lorem",
-      "createdDate": "19:09 2023-03-12",
-      "userId": 1,
-      "id": 9
-    },
-    {
-      "key": "65470a69-2cde-4845-865b-53569c2439fa",
-      "type": "text",
-      "content": "adasd",
-      "createdDate": "21:59 2023-03-12",
-      "userId": 1,
-      "id": 10
-    },
-    {
       "key": "2415337d-b39e-4306-b0c0-a98a8a1a64f0",
       "type": "youtube",
       "content": "https://youtu.be/axRAL0BXNvw",

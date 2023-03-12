@@ -1,17 +1,19 @@
 import './PostsForm.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { API_URL } from './../../utils/config';
 import { fetchData, getTimeStamp, getDataType, getDataTypeVideoId } from './../../utils/functions';
 import { v4 as uuid } from 'uuid';
 
 const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => {
-
   const [inputData, setInputData] = useState('');
   const [inputDataType, setInputDataType] = useState('');
   const [inputCenterClass, setInputCenterClass] = useState('');
+  const [inputValidationClass, setInputValidationClass] = useState('');
+  const inputReference = useRef(null);
 
   const onInputDataChange = value => {
     setInputData(value);
+    setInputValidationClass('');
 
     const lines = value.split(/\r\n|\r|\n/).length;
     if (lines >= 3) {
@@ -29,6 +31,12 @@ const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => 
     event.preventDefault();
     let data = {};
     let postResponse;
+
+    if (!inputData) {
+      setInputValidationClass('error');
+      inputReference.current.focus();
+      return;
+    }
 
     if (postToEditId) {
       data = { 
@@ -94,9 +102,10 @@ const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => 
           <textarea 
             name="input-data" 
             placeholder="Enter link, video link or text..."
-            className="error"
+            className={inputValidationClass}
             value={inputData}
             onChange={event => onInputDataChange(event.target.value)}
+            ref={inputReference}
           ></textarea>
         </div>
       </div>

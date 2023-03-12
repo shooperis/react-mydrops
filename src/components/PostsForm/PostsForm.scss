@@ -71,10 +71,14 @@
         font-family: 'Roboto';
         font-size: 18px;
         line-height: 33px;
-        padding: 2px 0px 0px;
-        border: none;
+        padding: 2px 5px 0px;
+        border: 1px solid transparent;
         background-color: transparent;
         resize: none;
+
+        &.error:focus {
+          outline-color: #ee402d;
+        }
       }
     }
 
