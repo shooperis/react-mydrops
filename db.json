@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "content": "lorem ipsum 1",
+      "createdDate": "16:50 12-03-2023",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "content": "lorem ipsum 2",
+      "createdDate": "16:55 12-03-2023",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "content": "lorem ipsum 4",
+      "createdDate": "17:05 12-03-2023",
+      "userId": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "joe@email.com",
+      "name": "Joe"
+    }
+  ]
+}
