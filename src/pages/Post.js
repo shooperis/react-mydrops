@@ -4,20 +4,50 @@ import { API_URL, APP_SETTINGS } from './../utils/config';
 import { fetchData, prettyDate, postContentRender } from './../utils/functions';
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import PostsForm from '../components/PostsForm/PostsForm';
 
 const Post = () => {
   let { key } = useParams();
+  const loggedUserKey = JSON.parse(localStorage.getItem("user"));
   const [post, setPost] = useState({});
+  const [postOwner, setPostOwner] = useState({});
+  const [editPost, setEditPost] = useState(false);
 
   async function initPost() {
-    const postData = await fetchData(`${API_URL}/posts?key=${key}&_expand=user`);
-    setPost(postData[0]);
+    const postData = (await fetchData(`${API_URL}/posts?key=${key}&_expand=user`))[0];
+
+    setPost({
+      id: postData.id,
+      key: postData.key,
+      type: postData.type,
+      content: postData.content,
+      additionalData: postData.additionalData,
+      createdDate: postData.createdDate
+    });
+
+    setPostOwner({
+      name: postData.user.name,
+      key: postData.user.key
+    });
   }
 
   useEffect(() => {
     initPost();
   }, [])
 
+  const editPostHandler = () => {
+    setEditPost(prevState => !prevState);
+  }
+
+  const onUpdatedPostsHandler = (data, method) => {
+    if (method === 'edit') {
+      setPost(prevState => {
+        return {...prevState, content: data.content, type: data.type, additionalData: data.additionalData,}
+      });
+
+      setEditPost(false);
+    }
+  }
 
   return (
     <div className="container post-page">
@@ -27,13 +57,31 @@ const Post = () => {
         <Link className="back-button" to="/">Back to MyDrops</Link>
       </header>
 
-      {postContentRender(post.content, post.type)}
+      {editPost && (
+        <PostsForm 
+          postToEditId={post.id}
+          postToEditContent={post.content}
+          onUpdatedPostsHandler={onUpdatedPostsHandler}
+        />
+      )}
+
+      {postContentRender((post.type === 'youtube' || post.type === 'vimeo') ? post.additionalData : post.content, post.type)}
 
       <div className="content post-detail">
         <div className="title">{post.type}</div>
+        {postOwner.key === loggedUserKey && (
+          <div className="edit-button-wrapper">
+            <button 
+              className={`btn small-btn ${editPost ? 'secondary-btn' : ''}`} 
+              onClick={() => {editPostHandler()}}
+            >
+              {!editPost ? 'Edit this post' : 'Cancel editing'}
+            </button>
+          </div>
+        )}
         <div className="date">Upload date: {prettyDate(post.createdDate)}</div>
-        {post.user && (
-          <div className="user">Post owner: <span>{post.user.name}</span></div>
+        {postOwner.name && (
+          <div className="user">Post owner: <span>{postOwner.name}</span>{postOwner.key === loggedUserKey ? ' (you)' : ''}</div>
         )}
         <div className="share-title">Share this post</div>
         <div className="share-icons">

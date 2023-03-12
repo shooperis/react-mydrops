@@ -1,0 +1,53 @@
+.btn {
+  color: $button-primary-text-color;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: $button-primary-bg-color;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  vertical-align: middle;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  padding: 5px 15px;
+
+  &:hover, &.active {
+    color: $button-primary-bg-color;
+    background-color: transparent;
+    border-color: $button-primary-bg-color;
+  }
+
+  &.small-btn {
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+  }
+
+  &.big-btn {
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 7px;
+  }
+
+  &.secondary-btn {
+    color: $button-secondary-text-color;
+    background-color: $button-secondary-bg-color;
+
+    &:hover, &.active {
+      color: $button-secondary-bg-color;
+      background-color: transparent;
+      border-color: $button-secondary-bg-color;
+    }
+  }
+
+  &.third-btn {
+    color: $button-third-text-color;
+    background-color: $button-third-bg-color;
+
+    &:hover, &.active {
+      color: $button-third-bg-color;
+      background-color: transparent;
+      border-color: $button-third-bg-color;
+    }
+  }
+}

@@ -16,6 +16,8 @@ function App() {
 
     if (userData.id) {
       setUser(userData);
+
+      localStorage.setItem("user", JSON.stringify(userData.key));
     }
   }
 

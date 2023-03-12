@@ -1,16 +1,16 @@
 import './PostsForm.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { API_URL } from './../../utils/config';
 import { fetchData, getTimeStamp, getDataType, getDataTypeVideoId } from './../../utils/functions';
 import { v4 as uuid } from 'uuid';
 
-const PostsForm = ({onUpdatedPostsHandler}) => {
+const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => {
+
   const [inputData, setInputData] = useState('');
   const [inputDataType, setInputDataType] = useState('');
   const [inputCenterClass, setInputCenterClass] = useState('');
 
-  const onInputDataChange = (event) => {
-    const value = event.target.value;
+  const onInputDataChange = value => {
     setInputData(value);
 
     const lines = value.split(/\r\n|\r|\n/).length;
@@ -27,14 +27,23 @@ const PostsForm = ({onUpdatedPostsHandler}) => {
 
   const onSubmitFormHandler = async event => {
     event.preventDefault();
+    let data = {};
+    let postResponse;
 
-    const data = { 
-      key: uuid(),
-      type: inputDataType,
-      content: inputData,
-      createdDate: getTimeStamp(),
-      userId: 1,
-    };
+    if (postToEditId) {
+      data = { 
+        type: inputDataType,
+        content: inputData
+      };
+    } else {
+      data = { 
+        key: uuid(),
+        type: inputDataType,
+        content: inputData,
+        createdDate: getTimeStamp(),
+        userId: 1,
+      };
+    }
 
     if (inputDataType === 'youtube' || inputDataType === 'vimeo') {
       data.additionalData = getDataTypeVideoId(inputData);
@@ -44,24 +53,39 @@ const PostsForm = ({onUpdatedPostsHandler}) => {
       data.content = 'https://' + inputData;
     }
 
-    const newPost = await fetchData(`${API_URL}/posts`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify(data)
-    });
+    if (postToEditId) {
+      postResponse = await fetchData(`${API_URL}/posts/${postToEditId}`, {
+        method: 'PATCH',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify(data)
+      });
 
-    if (newPost) {
-      onUpdatedPostsHandler(newPost, 'create');
+      onUpdatedPostsHandler(postResponse, 'edit');
+    } else {
+      postResponse = await fetchData(`${API_URL}/posts`, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify(data)
+      });
 
+      onUpdatedPostsHandler(postResponse, 'create');
+    }
+
+    if (postResponse) {
       setInputData('');
       setInputDataType('');
       setInputCenterClass('');
     }
   }
 
+  useEffect(() => {
+    if (postToEditId && postToEditContent) {
+      onInputDataChange(postToEditContent);
+    }
+  }, [])
 
   return (
-    <form className="new-post-form" onSubmit={onSubmitFormHandler} noValidate>
+    <form className="post-form" onSubmit={onSubmitFormHandler} noValidate>
       <div className="left">
         <div className={`icon ${inputDataType}`}></div>
       </div>
@@ -72,7 +96,7 @@ const PostsForm = ({onUpdatedPostsHandler}) => {
             placeholder="Enter link, video link or text..."
             className="error"
             value={inputData}
-            onChange={onInputDataChange}
+            onChange={event => onInputDataChange(event.target.value)}
           ></textarea>
         </div>
       </div>
