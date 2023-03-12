@@ -52,3 +52,68 @@ export function prettyDate(receivedDate) {
 
   return `${Math.round(hoursDifference * 60)} minutes ago`;
 }
+
+export function getDataType(value) {
+  const valueLowerCase = value.toLowerCase();
+
+  if (valueLowerCase.match(/^http:|^https:|^www./)) {
+    if (valueLowerCase.match(/youtube.com|youtu.be/)) {
+      return 'youtube';
+    }
+
+    if (valueLowerCase.match(/vimeo.com/)) {
+      return 'vimeo';
+    }
+
+    if (valueLowerCase.match(/.jpg|.jpeg|.png|.gif|.bmp|.svg/)) {
+      return 'image';
+    }
+
+    return 'link';
+  }
+
+  if (value) {
+    return 'text';
+  }
+  
+  return 'unknown';
+}
+
+export function getDataTypeVideoId(url) {
+  const urlLowerCase = url.toLowerCase();
+  if (urlLowerCase.match(/youtube.com|youtu.be/)) {
+    if (url.match(/v=/)) {
+      return url.split('v=')[1].split('&')[0];
+    }
+
+    if (url.match(/embed/)) {
+      return url.split('embed/')[1].split('?')[0];
+    }
+
+    if (url.match(/.be/)) {
+      return url.split('.be/')[1].split('?')[0];
+    }
+  }
+
+  if (urlLowerCase.match(/vimeo.com/)) {
+    if (url.match(/video/)) {
+      return url.split('video/')[1].split('?')[0];
+    }
+
+    if (url.match(/.com/)) {
+      return url.split('.com/')[1].split('?')[0];
+    }
+  }
+}
+
+export function postContentRender(content, type) {
+  if (type === 'link') {
+    return <div className="content link"><a href={content} target="_blank">{content}</a></div>;
+  } else if (type === 'image') {
+    return <img className="content image" src={content} alt="image" />;
+  } else if (type === 'youtube') {
+    return <iframe className="content video" src={`https://www.youtube.com/embed/${content}?wmode=transparent&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;enablejsapi=1&amp;playerapiid=yt_player&amp;autohide=1`}></iframe>;
+  } else {
+    return <div className="content text">{content}</div>;
+  }
+}

@@ -1,27 +1,43 @@
-import { APP_SETTINGS } from './../utils/config';
-import { Link } from "react-router-dom";
 import './Posts.scss';
+import { API_URL } from './../utils/config';
+import { fetchData } from './../utils/functions';
+import { useState, useEffect } from 'react';
 import PostsForm from '../components/PostsForm/PostsForm';
 import PostsList from '../components/PostsList/PostsList';
+import Logo from '../components/Logo/Logo';
 
+const Posts = ({user}) => {
+  const [posts, setPosts] = useState([]);
 
-const Posts = ({posts}) => {
+  async function initPosts() {
+    const postsData = await fetchData(`${API_URL}/posts?userId=${user}&_sort=id&_order=desc`);
+    setPosts(postsData);
+  }
+
+  useEffect(() => {
+    initPosts();
+  }, [])
+
+  const onUpdatedPostsHandler = (data, method) => {
+    if (method === 'delete') {
+      setPosts(prevState => prevState.filter(post => post.id !== data));
+    }
+
+    if (method === 'create') {
+      setPosts(prevState => [data, ...prevState]);
+    }
+  }
   
-  console.log(posts);
-
-
   return (
     <>
-      <header className="main-header">
-        <Link className="logo" to="/">
-          <img src={APP_SETTINGS.logo} alt={APP_SETTINGS.name} />
-        </Link>
+      <header className="list-header">
+        <Logo />
         
-        <PostsForm />
+        <PostsForm onUpdatedPostsHandler={onUpdatedPostsHandler} />
       </header>
 
       <main>
-        <PostsList posts={posts} />
+        <PostsList posts={posts} onUpdatedPostsHandler={onUpdatedPostsHandler} />
       </main>
     </>
   )

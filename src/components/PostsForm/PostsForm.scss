@@ -9,6 +9,39 @@
     height: 70px;
     background-image: url('./../../assets/images/form-input/input_left_bg.png');
     background-repeat: no-repeat;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      background-repeat: no-repeat;
+      background-size: 28px;
+      margin: 21px 0px 0px 29px;
+      position: relative;
+
+      &.unknown {
+        background-image: url('./../../assets/images/form-input/input_unknown.png');
+      }
+
+      &.text {
+        background-image: url('./../../assets/images/form-input/input_text.png');
+      }
+
+      &.link {
+        background-image: url('./../../assets/images/form-input/input_link.png');
+      }
+
+      &.image {
+        background-image: url('./../../assets/images/form-input/input_image.png');
+      }
+
+      &.youtube {
+        background-image: url('./../../assets/images/form-input/input_youtube.png');
+      }
+
+      &.vimeo {
+        background-image: url('./../../assets/images/form-input/input_vimeo.png');
+      }
+    }
   }
 
   .center {

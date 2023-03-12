@@ -1,33 +1,40 @@
-// import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import { API_URL } from './utils/config';
 import { fetchData } from './utils/functions';
 import { useState, useEffect } from 'react';
 import Posts from './pages/Posts';
+import Post from './pages/Post';
 
 function App() {
 
   const userId = 1;
 
   const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
 
   async function initUser() {
-    const userData = await fetchData(`${API_URL}/users/${userId}?_embed=posts`);
+    const userData = await fetchData(`${API_URL}/users/${userId}`);
 
     if (userData.id) {
       setUser(userData);
-      setPosts(userData.posts);
     }
   }
 
   useEffect(() => {
     initUser();
-  },[])
-
+  }, [])
 
   return (
     <div className="wrapper">
-      <Posts posts={posts} />
+      <Routes>
+        <Route index element={<Posts user={userId} />} />
+        <Route path="/post/:key" element={<Post />} />
+        <Route path='*' element={
+          <div>
+            <h1>404 error. Page not found</h1>
+            <Link to='/'>Back to Home page</Link>
+          </div>
+        } />
+      </Routes>
     </div>
   );
 }

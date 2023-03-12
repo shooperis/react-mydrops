@@ -1,37 +1,40 @@
 {
   "posts": [
     {
-      "id": 1,
-      "key": 1,
-      "type": "text",
-      "content": "lorem ipsum 1",
-      "createdDate": "12:00 2023-03-12",
-      "userId": 1
+      "key": "4c2b3555-9afb-44d9-8606-4b230faaafdc",
+      "type": "image",
+      "content": "https://yesofcorsa.com/wp-content/uploads/2018/03/Insects-In-The-Rain-Best-Wallpaper.jpg",
+      "createdDate": "17:33 2023-03-12",
+      "userId": 1,
+      "id": 5
     },
     {
-      "id": 2,
-      "key": 2,
-      "type": "link",
-      "content": "lorem ipsum 2",
-      "createdDate": "12:00 2023-03-11",
-      "userId": 1
-    },
-    {
-      "id": 3,
-      "key": 3,
+      "key": "4b8120ee-26f4-46f6-a93c-d05567fa2654",
       "type": "youtube",
-      "content": "lorem ipsum 3",
-      "createdDate": "15:00 2023-03-12",
-      "userId": 1
-    }
-  ],
-  "comments": [
+      "content": "https://www.youtube.com/watch?v=aCOH3Ui8ZRU&list=RDDKbfBSrjVHA&index=27",
+      "createdDate": "17:33 2023-03-12",
+      "userId": 1,
+      "additionalData": "aCOH3Ui8ZRU",
+      "id": 6
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "key": "5fb536f8-221c-444e-8a80-835c8d6e0fbc",
+      "type": "link",
+      "content": "https://www.google.lt",
+      "createdDate": "18:21 2023-03-12",
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "key": "48eb76db-d144-47d6-8ae0-9ca78d341197",
+      "type": "text",
+      "content": "Lorem",
+      "createdDate": "19:09 2023-03-12",
+      "userId": 1,
+      "id": 9
     }
   ],
+  "comments": [],
   "users": [
     {
       "id": 1,
