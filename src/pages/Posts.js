@@ -33,7 +33,7 @@ const Posts = ({user}) => {
       <header className="list-header">
         <Logo />
         
-        <PostsForm onUpdatedPostsHandler={onUpdatedPostsHandler} />
+        <PostsForm user={user} onUpdatedPostsHandler={onUpdatedPostsHandler} />
       </header>
 
       <main>

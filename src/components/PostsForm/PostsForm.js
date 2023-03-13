@@ -4,7 +4,7 @@ import { API_URL } from './../../utils/config';
 import { fetchData, getTimeStamp, getDataType, getDataTypeVideoId } from './../../utils/functions';
 import { v4 as uuid } from 'uuid';
 
-const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => {
+const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent}) => {
   const [inputData, setInputData] = useState('');
   const [inputDataType, setInputDataType] = useState('');
   const [inputCenterClass, setInputCenterClass] = useState('');
@@ -49,7 +49,7 @@ const PostsForm = ({onUpdatedPostsHandler, postToEditId, postToEditContent}) => 
         type: inputDataType,
         content: inputData,
         createdDate: getTimeStamp(),
-        userId: 1,
+        userId: user,
       };
     }
 
