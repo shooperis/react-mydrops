@@ -5,6 +5,7 @@ import { fetchData, prettyDate, postContentRender } from './../utils/functions';
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import PostsForm from '../components/PostsForm/PostsForm';
+import PostComments from '../components/PostComments/PostComments';
 
 const Post = () => {
   let { key } = useParams();
@@ -12,9 +13,11 @@ const Post = () => {
   const [post, setPost] = useState({});
   const [postOwner, setPostOwner] = useState({});
   const [editPost, setEditPost] = useState(false);
+  const [apiStatus, setApiStatus] = useState(false);
 
   async function initPost() {
-    const postData = (await fetchData(`${API_URL}/posts?key=${key}&_expand=user`))[0];
+    const postData = (await fetchData(`${API_URL}/posts?key=${key}&_expand=user&_embed=comments`))[0];
+    setApiStatus(true)
 
     setPost({
       id: postData.id,
@@ -22,7 +25,8 @@ const Post = () => {
       type: postData.type,
       content: postData.content,
       additionalData: postData.additionalData,
-      createdDate: postData.createdDate
+      createdDate: postData.createdDate,
+      comments: postData.comments
     });
 
     setPostOwner({
@@ -68,7 +72,7 @@ const Post = () => {
       {postContentRender((post.type === 'youtube' || post.type === 'vimeo') ? post.additionalData : post.content, post.type)}
 
       <div className="content post-detail">
-        <div className="title">{post.type}</div>
+        <h1 className="title">{post.type}</h1>
         {postOwner.key === loggedUserKey && (
           <div className="edit-button-wrapper">
             <button 
@@ -90,6 +94,8 @@ const Post = () => {
         </div>
         <input className="share-link" value={APP_SETTINGS.address + '/post/' + post.key} readOnly/>
       </div>
+
+      {apiStatus && <PostComments commentsData={post.comments} postId={post.id} postOwner={postOwner.key} />}
     </div>
   )
 }

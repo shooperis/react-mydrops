@@ -112,6 +112,8 @@
         color: #e34a1f;
         font-size: 20px;
         line-height: 1.2;
+        font-weight: 400;
+        margin: 0px;
         text-transform: capitalize;
 
         @include size(xs) {

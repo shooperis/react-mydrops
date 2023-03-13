@@ -1,0 +1,115 @@
+@import './../../assets/css/responsive-mixins';
+
+.post-comments {
+  padding: 10px;
+
+  .title {
+    width: 100%;
+    color: #e34a1f;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0px;
+    text-transform: capitalize;
+  }
+
+  .comments-list {
+    padding: 10px 15px;
+
+    .no-comments {
+      text-align: center;
+    }
+
+    .comment + .comment {
+      border-top: 1px solid #666666;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    .comment {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 5px;
+
+      .delete-button {
+        color: #e34a1f;
+        font-size: 18px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .name, .date {
+        width: calc(100% / 2 - 10px);
+        color: #888888;
+      }
+
+      .date {
+        text-align: right;
+      }
+
+      .text {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.post-comments-form {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .title {
+    width: 100%;
+    color: #e34a1f;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0px;
+    text-transform: capitalize;
+  }
+
+  .form-control {
+    width: calc(100% / 2 - 5px);
+
+    @include size(lg) {
+      width: 100%;
+    }
+
+    label, textarea, input, button {
+      width: 100%;
+      display: block;
+    }
+
+    input, textarea {
+      color: #888888;
+      font-family: 'Roboto';
+      font-size: 14px;
+      padding: 1px 5px;
+      resize: none;
+
+      &.error {
+        border-color: #ee402d;
+        outline-color: #ee402d;
+      }
+    }
+    
+    textarea {
+      height: 59px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+
+  span.error {
+    color: #ee402d;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+  }
+}
