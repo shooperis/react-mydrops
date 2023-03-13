@@ -26,20 +26,18 @@ function App() {
   }
 
   useEffect(() => {
-    if (!loggedUserKey) {
-      navigate("/login");
+    if (loggedUserKey) {
+      initUser(loggedUserKey);
     }
-
-    initUser(loggedUserKey);
   }, [])
 
   return (
     <>
-      {loggedUserKey && <UserMenu />}
+      {user.id && <UserMenu />}
 
       <div className="wrapper">
         <Routes>
-          <Route index element={<Posts user={user.id} />} />
+          <Route index element={user.id && <Posts user={user.id} />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

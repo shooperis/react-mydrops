@@ -4,7 +4,7 @@ import NewbieTour from '../NewbieTour/NewbieTour';
 
 const PostsList = ({posts, onUpdatedPostsHandler}) => {
   const renderList = () => {
-    if (!posts || posts.length < 1) {
+    if (posts.length < 1) {
       return <NewbieTour />;
     }
 
