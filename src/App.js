@@ -1,4 +1,4 @@
-import { Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { API_URL } from './utils/config';
 import { fetchData } from './utils/functions';
 import { useState, useEffect } from 'react';
@@ -6,6 +6,7 @@ import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   const navigate = useNavigate();
@@ -37,12 +38,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/post/:key" element={<Post />} />
-        <Route path='*' element={
-          <div>
-            <h1>404 error. Page not found</h1>
-            <Link to='/'>Back to Home page</Link>
-          </div>
-        } />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,50 @@
+.container.page-not-found-page {
+  max-width: 600px;
+  margin: 150px auto 0px;
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFFFFF;
+
+    .back-button {
+      color: #FFFFFF;
+      font-size: 15px;
+      text-decoration: none;
+      margin: 80px 10px 0px 0px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .content {
+    color: #FFFFFF;
+
+    .title {
+      color: #FFFFFF;
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin: 30px 0px;
+
+      &::after {
+        content: "";
+        max-width: 10%;
+        height: 4px;
+        background-color: #ee402d;
+        margin: 30px auto 0px 0px;
+        display: block;
+      }
+    }
+
+    a {
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+  }
+}
