@@ -1,0 +1,83 @@
+.newbie-tour {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+  padding: 20px;
+  color: #444444;
+  font-size: 18px;
+
+  .title {
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+
+    span {
+      font-size: 22px;
+      display: block;
+      padding-top: 5px;
+      padding-left: 15px;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .left {
+    width: calc(100% / 12 * 5 - 10px);
+
+    .supported {
+      display: flex;
+      justify-content: space-between;
+      gap: 5px;
+
+      .item {
+        width: calc(100% / 5 - 5px);
+        font-size: 13px;
+        text-align: center;
+        width: 80px;
+        padding-top: 84px;
+        background-repeat: no-repeat;
+
+        &.supp_youtube {
+          background-image: url('./../../assets/images/newbie-tour/supp_youtube.png');
+        }
+
+        &.supp_vimeo {
+          background-image: url('./../../assets/images/newbie-tour/supp_vimeo.png');
+        }
+
+        &.supp_link {
+          background-image: url('./../../assets/images/newbie-tour/supp_link.png');
+        }
+
+        &.supp_image {
+          background-image: url('./../../assets/images/newbie-tour/supp_image.png');
+        }
+
+        &.supp_etc {
+          background-image: url('./../../assets/images/newbie-tour/supp_etc.png');
+        }
+      }
+    }
+  }
+
+  .center {
+    width: calc(100% / 12 * 2 - 10px);
+
+    img {
+      margin: 0px auto;
+    }
+  }
+
+  .right {
+    width: calc(100% / 12 * 5 - 10px);
+  }
+}

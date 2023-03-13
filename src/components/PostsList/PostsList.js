@@ -1,10 +1,11 @@
 import './PostsList.scss';
 import PostItem from "./PostItem/PostItem";
+import NewbieTour from '../NewbieTour/NewbieTour';
 
 const PostsList = ({posts, onUpdatedPostsHandler}) => {
   const renderList = () => {
     if (!posts || posts.length < 1) {
-      return <div className="no-posts">No posts found.</div>;
+      return <NewbieTour />;
     }
 
     return posts.map((post, index) => 
