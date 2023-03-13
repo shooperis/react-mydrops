@@ -16,7 +16,7 @@ const Posts = ({user}) => {
 
   useEffect(() => {
     initPosts();
-  }, [])
+  }, [user])
 
   const onUpdatedPostsHandler = (data, method) => {
     if (method === 'delete') {

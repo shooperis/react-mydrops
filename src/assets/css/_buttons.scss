@@ -15,6 +15,10 @@
     color: $button-primary-bg-color;
     background-color: transparent;
     border-color: $button-primary-bg-color;
+
+    &.full {
+      background-color: rgb(255 255 255 / 80%);
+    }
   }
 
   &.small-btn {
@@ -37,6 +41,10 @@
       color: $button-secondary-bg-color;
       background-color: transparent;
       border-color: $button-secondary-bg-color;
+
+      &.full {
+        background-color: rgb(255 255 255 / 80%);
+      }
     }
   }
 
@@ -48,6 +56,10 @@
       color: $button-third-bg-color;
       background-color: transparent;
       border-color: $button-third-bg-color;
+
+      &.full {
+        background-color: rgb(255 255 255 / 80%);
+      }
     }
   }
 }
