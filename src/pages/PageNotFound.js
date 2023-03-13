@@ -15,7 +15,6 @@ const PageNotFound = () => {
       <div className="content">
         <h1 className="title">Page not found</h1>
 
-        <br />
         The requested URL was not found on this website
         <br /><br />
         Most likely causes:
@@ -29,7 +28,7 @@ const PageNotFound = () => {
         <br />
         <ul>
           <li>Retype the address.</li>
-          <li>Go back to the previuos page.</li>
+          <li>Go back to the previous page.</li>
           <li>Go to <Link to={APP_SETTINGS.address}>{APP_SETTINGS.address}</Link></li>
         </ul>
       </div>
