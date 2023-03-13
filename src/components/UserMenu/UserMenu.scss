@@ -16,7 +16,7 @@
 
     .menu {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
 
       @include size(xs) {
         justify-content: flex-start;

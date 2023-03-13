@@ -88,6 +88,7 @@
       "name": "Dominykas",
       "password": "$2a$08$mmw6l9vDB/C26LuUbEgUdeSE11cu3T9TeTVuoiSCSonKWDJTLNYfu",
       "createdDate": "01:25 2023-03-13",
+      "admin": true,
       "id": 1
     }
   ]

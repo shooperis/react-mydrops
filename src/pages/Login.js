@@ -37,7 +37,14 @@ const Login = () => {
   };
 
   async function tryToLogin(email, password) {
+    const errorMessage = 'You enter bad email or password';
     const userData = (await fetchData(`${API_URL}/users?email=${email}`))[0];
+    
+    if (!userData) {
+      setError(errorMessage);
+      return;
+    }
+
     const passwordVerification = bcrypt.compareSync(password, userData.password);
 
     if (passwordVerification) {
@@ -45,10 +52,10 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(userData.key));
 
       navigate("/");
-    } else {
-      setError('You enter bad email or password');
-      return;
     }
+    
+    setError(errorMessage);
+    return;
   }
 
   return (
