@@ -7,6 +7,8 @@ import Post from './pages/Post';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
+import Logout from './pages/Logout';
+import UserMenu from './components/UserMenu/UserMenu';
 
 function App() {
   const navigate = useNavigate();
@@ -32,15 +34,20 @@ function App() {
   }, [])
 
   return (
-    <div className="wrapper">
-      <Routes>
-        <Route index element={<Posts user={user.id} />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/post/:key" element={<Post />} />
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
-    </div>
+    <>
+      {loggedUserKey && <UserMenu />}
+
+      <div className="wrapper">
+        <Routes>
+          <Route index element={<Posts user={user.id} />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/post/:key" element={<Post />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
