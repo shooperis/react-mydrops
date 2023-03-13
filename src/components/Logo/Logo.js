@@ -1,3 +1,4 @@
+import './Logo.scss';
 import { APP_SETTINGS } from './../../utils/config';
 import { Link } from "react-router-dom";
 

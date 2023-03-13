@@ -1,3 +1,5 @@
+@import './../../assets/css/responsive-mixins';
+
 .newbie-tour {
   width: 100%;
   display: flex;
@@ -33,18 +35,53 @@
   .left {
     width: calc(100% / 12 * 5 - 10px);
 
+    @include size(md) {
+      width: 100%;
+      text-align: center;
+
+      img {
+        margin: 15px auto;
+      }
+    }
+
     .supported {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       gap: 5px;
+
+      @include size(lg) {
+        justify-content: flex-start;
+      }
+
+      @include size(md) {
+        width: 80%;
+        margin: 0px auto;
+      }
+
+      @include size(sm) {
+        width: 100%;
+      }
 
       .item {
         width: calc(100% / 5 - 5px);
         font-size: 13px;
         text-align: center;
-        width: 80px;
-        padding-top: 84px;
+        // padding-top: 84px;
+        padding-top: 20%;
         background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center top;
+
+        @include size(lg) {
+          width: calc(100% / 3 - 5px);
+          background-size: 60%;
+        }
+
+        @include size(md) {
+          width: calc(100% / 5 - 5px);
+          background-size: contain;
+        }
 
         &.supp_youtube {
           background-image: url('./../../assets/images/newbie-tour/supp_youtube.png');
@@ -72,12 +109,25 @@
   .center {
     width: calc(100% / 12 * 2 - 10px);
 
+    @include size(md) {
+      width: 100%;
+    }
+
     img {
-      margin: 0px auto;
+      margin: 30px auto;
     }
   }
 
   .right {
     width: calc(100% / 12 * 5 - 10px);
+
+    @include size(md) {
+      width: 100%;
+      text-align: center;
+
+      img {
+        margin: 15px auto;
+      }
+    }
   }
 }

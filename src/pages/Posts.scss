@@ -1,7 +1,22 @@
+@import './../assets/css/responsive-mixins';
+
 .list-header {
   min-height: 150px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 35px 25px;
+
+  @include size(md) {
+    flex-wrap: wrap;
+    min-height: 250px;
+    justify-content: center;
+    align-content: start;
+  }
+
+  form.post-form {
+    @include size(md) {
+      padding-bottom: 20px;
+    }
+  }
 }
