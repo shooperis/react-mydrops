@@ -108,11 +108,13 @@ export function getDataTypeVideoId(url) {
 
 export function postContentRender(content, type) {
   if (type === 'link') {
-    return <div className="content link"><a href={content} target="_blank">{content}</a></div>;
+    return <div className="content link"><a href={content} target="_blank" rel="noreferrer">{content}</a></div>;
   } else if (type === 'image') {
-    return <img className="content image" src={content} alt="image" />;
+    return <img className="content image" src={content} alt="ph0to" />;
   } else if (type === 'youtube') {
-    return <iframe className="content video" src={`https://www.youtube.com/embed/${content}?wmode=transparent&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;enablejsapi=1&amp;playerapiid=yt_player&amp;autohide=1`}></iframe>;
+    return <iframe className="content video" title={type} src={`https://www.youtube.com/embed/${content}?wmode=transparent&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;enablejsapi=1&amp;playerapiid=yt_player&amp;autohide=1`}></iframe>;
+  } else if (type === 'vimeo') {
+    return <iframe className="content video" title={type} src={`http://player.vimeo.com/video/${content}?title=1&amp;byline=0&amp;portrait=0&amp;wmode=transparent`} wmode="transparent"></iframe>;
   } else {
     return <div className="content text">{content}</div>;
   }
