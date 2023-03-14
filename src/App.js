@@ -9,6 +9,13 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Logout from './pages/Logout';
 import UserMenu from './components/UserMenu/UserMenu';
+import AdminLayout from './components/AdminLayout/AdminLayout';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminUserDelete from './pages/admin/AdminUserDelete';
+import AdminPosts from './pages/admin/AdminPosts';
+import AdminPostDelete from './pages/admin/AdminPostDelete';
+import AdminComments from './pages/admin/AdminComments';
+import AdminCommentDelete from './pages/admin/AdminCommentDelete';
 
 function App() {
   const navigate = useNavigate();
@@ -33,7 +40,7 @@ function App() {
 
   return (
     <>
-      {user.id && <UserMenu />}
+      {user.id && <UserMenu expanded={user.admin} />}
 
       <div className="wrapper">
         <Routes>
@@ -43,6 +50,19 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/post/:key" element={<Post />} />
           <Route path='*' element={<PageNotFound />} />
+          {user.admin && (
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminUsers />} />
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="users/:id" element={<AdminUsers />} />
+              <Route path="users/:id/delete" element={<AdminUserDelete />} />
+              <Route path="posts" element={<AdminPosts />} />
+              <Route path="posts/:id" element={<AdminPosts />} />
+              <Route path="posts/:id/delete" element={<AdminPostDelete />} />
+              <Route path="comments" element={<AdminComments />} />
+              <Route path="comments/:id/delete" element={<AdminCommentDelete />} />
+            </Route>
+          )}
         </Routes>
       </div>
     </>

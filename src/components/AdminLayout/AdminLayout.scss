@@ -1,0 +1,123 @@
+@import './../../assets/css/responsive-mixins';
+
+.container.admin-page {
+  max-width: 900px;
+  margin: 150px auto 30px;
+
+  @include size(lg) {
+    margin-top: 120px;
+  }
+
+  @include size(md) {
+    margin-top: 100px;
+  }
+
+  @include size(sm) {
+    margin-top: 50px;
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #FFFFFF;
+
+    @include size(md) {
+      align-items: baseline;
+      gap: 20px 25px;
+    }
+
+    .back-button {
+      color: #FFFFFF;
+      font-size: 15px;
+      text-decoration: none;
+      margin: 80px 10px 0px 0px;
+
+      @include size(md) {
+        margin-top: 0px;
+        margin-left: auto;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .admin-nav {
+    ul {
+      display: flex;
+      gap: 15px;
+      padding: 0px 15px;
+
+      li {
+        list-style: none;
+
+        a {
+          color: #FFFFFF;
+          text-decoration: none;
+
+          &.active, &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    min-height: 55px;
+    border: 1px solid #1C1C1C;
+    border-top: 1px solid #0D0D0D;
+    background-color: #1C1C1C;
+    background-image: url('./../../assets/images/post_bg.jpg');
+    background-repeat: repeat;
+    box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 1);
+    border-radius: 3px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 1.5;
+    
+    margin-top: 15px;
+    padding: 25px 22px 22px 22px;
+
+    .responsive-table {
+      overflow-x: auto;
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+
+        tr:nth-child(even) {
+          background-color: rgba(71, 71, 71, 0.5);
+        }
+
+        th, td {
+          text-align: left;
+          padding: 8px;
+
+          &.link-value {
+            color: #afafaf;
+
+            a {
+              color: #FFFFFF;
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+
+          input {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
