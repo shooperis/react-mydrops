@@ -45,14 +45,14 @@ function App() {
       <div className="wrapper">
         <Routes>
           <Route index element={user.id ? <Posts user={user.id} /> : <Login />} />
-          <Route path="posts" element={<Posts user={user.id} />} />
-          <Route path="post/:key" element={<Post />} />
-          <Route path="registration" element={<Registration />} />
-          <Route path="login" element={<Login />} />
-          <Route path="logout" element={<Logout />} />
-          <Route path='*' element={<PageNotFound />} />
+          <Route path="/posts" element={<Posts user={user.id} />} />
+          <Route path="/post/:key" element={<Post />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<PageNotFound />} />
           {user.admin && (
-            <Route path="admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminUsers />} />
               <Route path="users" element={<AdminUsers />} />
               <Route path="users/:id" element={<AdminUsers />} />

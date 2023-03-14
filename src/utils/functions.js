@@ -122,7 +122,7 @@ export function postContentRender(content, type) {
   } else if (type === 'youtube') {
     return <iframe className="content video" title={type} src={`https://www.youtube.com/embed/${content}?wmode=transparent&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;enablejsapi=1&amp;playerapiid=yt_player&amp;autohide=1`}></iframe>;
   } else if (type === 'vimeo') {
-    return <iframe className="content video" title={type} src={`http://player.vimeo.com/video/${content}?title=1&amp;byline=0&amp;portrait=0&amp;wmode=transparent`} wmode="transparent"></iframe>;
+    return <iframe className="content video" title={type} src={`https://player.vimeo.com/video/${content}?title=1&amp;byline=0&amp;portrait=0&amp;wmode=transparent`} wmode="transparent"></iframe>;
   } else if (type === 'soundcloud') {
     return <iframe className="content video" title={type} src={`https://w.soundcloud.com/player/?url=${content}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`}></iframe>;
   } else {
