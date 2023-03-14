@@ -12,7 +12,7 @@ const PostItem = (props) => {
     postTypeClass = 'link';
   } else if (type === 'image') {
     postTypeClass = 'image';
-  } else if (type === 'youtube' || type === 'vimeo') {
+  } else if (type === 'youtube' || type === 'vimeo' || type === 'soundcloud') {
     postTypeClass = 'video';
   } else {
     postTypeClass = 'unknown';
