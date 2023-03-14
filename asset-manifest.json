@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-mydrops/static/css/main.4394544a.css",
-    "main.js": "/react-mydrops/static/js/main.c970860a.js",
+    "main.js": "/react-mydrops/static/js/main.5d9e8b0d.js",
     "static/media/post_img.png": "/react-mydrops/static/media/post_img.906fa30c4b3afbdf4644.png",
     "static/media/background.jpg": "/react-mydrops/static/media/background.c0f42c3d2aa62d9370ff.jpg",
     "static/media/input_img.png": "/react-mydrops/static/media/input_img.b5f04928eb29aa6f7210.png",
@@ -13,10 +13,10 @@
     "static/media/supp_etc.png": "/react-mydrops/static/media/supp_etc.5496783ee762b0d48f3c.png",
     "index.html": "/react-mydrops/index.html",
     "main.4394544a.css.map": "/react-mydrops/static/css/main.4394544a.css.map",
-    "main.c970860a.js.map": "/react-mydrops/static/js/main.c970860a.js.map"
+    "main.5d9e8b0d.js.map": "/react-mydrops/static/js/main.5d9e8b0d.js.map"
   },
   "entrypoints": [
     "static/css/main.4394544a.css",
-    "static/js/main.c970860a.js"
+    "static/js/main.5d9e8b0d.js"
   ]
 }
