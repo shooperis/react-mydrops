@@ -12,6 +12,7 @@ import UserMenu from './components/UserMenu/UserMenu';
 import AdminLayout from './components/AdminLayout/AdminLayout';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminUserDelete from './pages/admin/AdminUserDelete';
+import AdminUsersManipulate from './pages/admin/AdminUsersManipulate';
 import AdminPosts from './pages/admin/AdminPosts';
 import AdminPostDelete from './pages/admin/AdminPostDelete';
 import AdminComments from './pages/admin/AdminComments';
@@ -36,7 +37,7 @@ function App() {
     if (loggedUserKey) {
       initUser(loggedUserKey);
     }
-  }, [])
+  }, [loggedUserKey])
 
   return (
     <>
@@ -44,17 +45,20 @@ function App() {
 
       <div className="wrapper">
         <Routes>
-          <Route index element={user.id && <Posts user={user.id} />} />
+          <Route index element={user.id ? <Posts user={user.id} /> : <Login />} />
+          <Route path="/posts" element={<Posts user={user.id} />} />
+          <Route path="/post/:key" element={<Post />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/post/:key" element={<Post />} />
-          <Route path='*' element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
           {user.admin && (
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminUsers />} />
               <Route path="users" element={<AdminUsers />} />
               <Route path="users/:id" element={<AdminUsers />} />
+              <Route path="users/new" element={<AdminUsersManipulate />} />
+              <Route path="users/:id/edit" element={<AdminUsersManipulate />} />
               <Route path="users/:id/delete" element={<AdminUserDelete />} />
               <Route path="posts" element={<AdminPosts />} />
               <Route path="posts/:id" element={<AdminPosts />} />

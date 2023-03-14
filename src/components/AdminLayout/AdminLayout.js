@@ -22,6 +22,9 @@ const AdminLayout = () => {
           <li>
             <NavLink to="comments">Comments</NavLink>
           </li>
+          <li className="end">
+            <NavLink to="users/new">Add new user</NavLink>
+          </li>
         </ul>
       </nav>
 
