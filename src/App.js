@@ -12,6 +12,7 @@ import UserMenu from './components/UserMenu/UserMenu';
 import AdminLayout from './components/AdminLayout/AdminLayout';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminUserDelete from './pages/admin/AdminUserDelete';
+import AdminUsersManipulate from './pages/admin/AdminUsersManipulate';
 import AdminPosts from './pages/admin/AdminPosts';
 import AdminPostDelete from './pages/admin/AdminPostDelete';
 import AdminComments from './pages/admin/AdminComments';
@@ -56,6 +57,8 @@ function App() {
               <Route index element={<AdminUsers />} />
               <Route path="users" element={<AdminUsers />} />
               <Route path="users/:id" element={<AdminUsers />} />
+              <Route path="users/new" element={<AdminUsersManipulate />} />
+              <Route path="users/:id/edit" element={<AdminUsersManipulate />} />
               <Route path="users/:id/delete" element={<AdminUserDelete />} />
               <Route path="posts" element={<AdminPosts />} />
               <Route path="posts/:id" element={<AdminPosts />} />

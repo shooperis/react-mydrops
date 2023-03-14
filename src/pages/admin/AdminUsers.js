@@ -48,6 +48,7 @@ const AdminUsers = () => {
               <td>{user.createdDate}</td>
               <td className="link-value">{user.posts.length > 0 ? <Link to={`/admin/posts?userId=${user.id}`}>{user.posts.length}</Link> : user.posts.length}</td>
               <td>
+                <Link className="btn small-btn" to={`/admin/users/${user.id}/edit`}>Edit</Link>
                 <Link className="btn small-btn secondary-btn" to={`/admin/users/${user.id}/delete`}>X</Link>
               </td>
             </tr>
