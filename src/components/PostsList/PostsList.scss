@@ -1,12 +1,14 @@
 @import './../../assets/css/responsive-mixins';
 
 .posts-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px 50px;
+  columns: 2;
+  column-gap: 50px;
+
+  @include size(sm) {
+    columns: 1;
+  }
 
   .post-item {
-    width: calc(100% / 2 - 25px);
     min-height: 55px;
     border: 1px solid #1C1C1C;
     border-top: 1px solid #0D0D0D;
@@ -21,10 +23,7 @@
     font-size: 14px;
     position: relative;
     overflow: hidden;
-
-    @include size(sm) {
-      width: 100%;
-    }
+    margin-bottom: 40px;
 
     .detail {
       width: 100%;
@@ -181,6 +180,7 @@
       &.image {
         max-width: 100%;
         height: 100%;
+        display: block;
       }
 
       &.video {
@@ -188,6 +188,7 @@
         height: 100%;
         min-height: 280px;
         border: none;
+        display: block;
       }
     }
 
