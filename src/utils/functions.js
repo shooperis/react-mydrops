@@ -65,6 +65,10 @@ export function getDataType(value) {
       return 'vimeo';
     }
 
+    if (valueLowerCase.match(/soundcloud.com/)) {
+      return 'soundcloud';
+    }
+
     if (valueLowerCase.match(/.jpg|.jpeg|.png|.gif|.bmp|.svg/)) {
       return 'image';
     }
@@ -104,6 +108,10 @@ export function getDataTypeVideoId(url) {
       return url.split('.com/')[1].split('?')[0];
     }
   }
+
+  if (urlLowerCase.match(/soundcloud.com/)) {
+    return url.split('?')[0];
+  }
 }
 
 export function postContentRender(content, type) {
@@ -115,6 +123,8 @@ export function postContentRender(content, type) {
     return <iframe className="content video" title={type} src={`https://www.youtube.com/embed/${content}?wmode=transparent&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;enablejsapi=1&amp;playerapiid=yt_player&amp;autohide=1`}></iframe>;
   } else if (type === 'vimeo') {
     return <iframe className="content video" title={type} src={`http://player.vimeo.com/video/${content}?title=1&amp;byline=0&amp;portrait=0&amp;wmode=transparent`} wmode="transparent"></iframe>;
+  } else if (type === 'soundcloud') {
+    return <iframe className="content video" title={type} src={`https://w.soundcloud.com/player/?url=${content}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`}></iframe>;
   } else {
     return <div className="content text">{content}</div>;
   }

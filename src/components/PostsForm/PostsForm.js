@@ -53,7 +53,7 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
       };
     }
 
-    if (inputDataType === 'youtube' || inputDataType === 'vimeo') {
+    if (inputDataType === 'youtube' || inputDataType === 'vimeo' || inputDataType === 'soundcloud') {
       data.additionalData = getDataTypeVideoId(inputData);
     }
 
