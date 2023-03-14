@@ -78,20 +78,64 @@
       "id": 20
     },
     {
-      "key": "7a9d0352-0d20-461f-b093-e3caee3105de",
-      "type": "text",
-      "content": "asdasd11111",
-      "createdDate": "11:22 2023-03-14",
+      "key": "a94b245a-bb87-4532-854a-33d70d74b064",
+      "type": "youtube",
+      "content": "https://www.youtube.com/watch?v=MfYx2Yg8imw",
+      "createdDate": "15:20 2023-03-14",
       "userId": 2,
-      "id": 21
+      "additionalData": "MfYx2Yg8imw",
+      "id": 22
     },
     {
-      "key": "8fdd2fbf-7fb9-41a6-b274-91eda0b2e8d0",
-      "type": "text",
-      "content": "ddasdsd",
-      "createdDate": "11:31 2023-03-14",
+      "key": "89ef6f9a-99f3-4ed8-a0f3-9ad3de6cf3b1",
+      "type": "soundcloud",
+      "content": "https://soundcloud.com/mightyj-1/sets/morning-chillout",
+      "createdDate": "15:20 2023-03-14",
       "userId": 2,
-      "id": 22
+      "additionalData": "https://soundcloud.com/mightyj-1/sets/morning-chillout",
+      "id": 24
+    },
+    {
+      "key": "6ced9592-b4fa-4edb-9c2e-7280b7615ae9",
+      "type": "image",
+      "content": "https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_960_720.jpg",
+      "createdDate": "15:36 2023-03-14",
+      "userId": 2,
+      "id": 25
+    },
+    {
+      "key": "d15fb780-9dfb-478d-9c6e-691901c275b9",
+      "type": "soundcloud",
+      "content": "https://soundcloud.com/mightyj-1/sets/morning-chillout",
+      "createdDate": "15:36 2023-03-14",
+      "userId": 1,
+      "additionalData": "https://soundcloud.com/mightyj-1/sets/morning-chillout",
+      "id": 26
+    },
+    {
+      "key": "550a695d-dc86-49b2-9e80-8fef7390287b",
+      "type": "youtube",
+      "content": "https://www.youtube.com/watch?v=MfYx2Yg8imw",
+      "createdDate": "15:36 2023-03-14",
+      "userId": 1,
+      "additionalData": "MfYx2Yg8imw",
+      "id": 27
+    },
+    {
+      "key": "b3cbc9f9-47e8-43e8-b75e-98330ecc0473",
+      "type": "link",
+      "content": "https://forms.office.com/Pages/ResponsePage.aspx?id=kFtFCJBdiUqTe4wjIrLHhusKe1nerilJobxB9vOysx5UQUlJVFVGV1U2SlI5QkM3NkJaNDJXWkE4MC4u",
+      "createdDate": "15:37 2023-03-14",
+      "userId": 1,
+      "id": 28
+    },
+    {
+      "key": "c516fc37-624d-4ea3-8622-a76192a108ec",
+      "type": "image",
+      "content": "https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_960_720.jpg",
+      "createdDate": "15:37 2023-03-14",
+      "userId": 1,
+      "id": 29
     }
   ],
   "comments": [
@@ -121,12 +165,13 @@
       "id": 1
     },
     {
-      "key": "2c0655d5-da42-4623-934d-97381fb13e51",
+      "key": "382a51dc-3ca3-43c2-9de4-3868fa0bab4d",
       "email": "test@test.lt",
-      "name": "test",
-      "password": "$2a$08$.fhwTmeELgeB/HdDWDI3ne.tCUyLS2A6.gV3I2QaBFax4tI6L7kn6",
-      "createdDate": "11:15 2023-03-14",
-      "id": 2
+      "name": "test1233",
+      "password": "$2a$08$e0sfJzZ48LfYG/uEXrCwyulT5AAMJkmRUH/IaVSFXUvKNkkgBWxJ2",
+      "createdDate": "15:19 2023-03-14",
+      "id": 2,
+      "admin": true
     }
   ]
 }

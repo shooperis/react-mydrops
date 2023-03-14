@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { API_URL } from './utils/config';
 import { fetchData } from './utils/functions';
 import { useState, useEffect } from 'react';
+import Wrapper from './components/Wrapper/Wrapper';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Registration from './pages/Registration';
@@ -42,8 +43,7 @@ function App() {
   return (
     <>
       {user.id && <UserMenu expanded={user.admin} />}
-
-      <div className="wrapper">
+      <Wrapper>
         <Routes>
           <Route index element={user.id ? <Posts user={user.id} /> : <Login />} />
           <Route path="/posts" element={<Posts user={user.id} />} />
@@ -68,7 +68,7 @@ function App() {
             </Route>
           )}
         </Routes>
-      </div>
+      </Wrapper>
     </>
   );
 }
