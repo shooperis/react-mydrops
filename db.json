@@ -67,6 +67,31 @@
       "userId": 1,
       "additionalData": "https://soundcloud.com/awolnation/freaking-me-out",
       "id": 19
+    },
+    {
+      "key": "8359bc99-51f5-4f40-a920-761baf6baddd",
+      "type": "youtube",
+      "content": "https://www.youtube.com/watch?v=cCEwUFtjAr4",
+      "createdDate": "11:17 2023-03-14",
+      "userId": 1,
+      "additionalData": "cCEwUFtjAr4",
+      "id": 20
+    },
+    {
+      "key": "7a9d0352-0d20-461f-b093-e3caee3105de",
+      "type": "text",
+      "content": "asdasd11111",
+      "createdDate": "11:22 2023-03-14",
+      "userId": 2,
+      "id": 21
+    },
+    {
+      "key": "8fdd2fbf-7fb9-41a6-b274-91eda0b2e8d0",
+      "type": "text",
+      "content": "ddasdsd",
+      "createdDate": "11:31 2023-03-14",
+      "userId": 2,
+      "id": 22
     }
   ],
   "comments": [
@@ -87,12 +112,6 @@
   ],
   "users": [
     {
-      "id": 2,
-      "key": "d144-47d6",
-      "email": "joe@email.com",
-      "name": "Joe"
-    },
-    {
       "key": "78ad6168-0330-44a0-bae9-675c7608d5e7",
       "email": "dominykas@veiks.lt",
       "name": "Dominykas",
@@ -100,6 +119,14 @@
       "createdDate": "01:25 2023-03-13",
       "admin": true,
       "id": 1
+    },
+    {
+      "key": "2c0655d5-da42-4623-934d-97381fb13e51",
+      "email": "test@test.lt",
+      "name": "test",
+      "password": "$2a$08$.fhwTmeELgeB/HdDWDI3ne.tCUyLS2A6.gV3I2QaBFax4tI6L7kn6",
+      "createdDate": "11:15 2023-03-14",
+      "id": 2
     }
   ]
 }

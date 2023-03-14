@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.d902bd39.css",
-    "main.js": "/static/js/main.40dedbe0.js",
-    "static/media/post_img.png": "/static/media/post_img.906fa30c4b3afbdf4644.png",
-    "static/media/background.jpg": "/static/media/background.c0f42c3d2aa62d9370ff.jpg",
-    "static/media/input_img.png": "/static/media/input_img.b5f04928eb29aa6f7210.png",
-    "static/media/logo.png": "/static/media/logo.9f84a4d07ab33f14309f.png",
-    "static/media/supp_vimeo.png": "/static/media/supp_vimeo.3a4224e1ab40a376ffd1.png",
-    "static/media/supp_link.png": "/static/media/supp_link.a93e2f2f740c21e0eb4f.png",
-    "static/media/supp_youtube.png": "/static/media/supp_youtube.331fa144b78ff7ce46ca.png",
-    "static/media/supp_image.png": "/static/media/supp_image.3699f6461c2a23162def.png",
-    "static/media/supp_etc.png": "/static/media/supp_etc.5496783ee762b0d48f3c.png",
-    "index.html": "/index.html",
-    "main.d902bd39.css.map": "/static/css/main.d902bd39.css.map",
-    "main.40dedbe0.js.map": "/static/js/main.40dedbe0.js.map"
+    "main.css": "/react-mydrops/static/css/main.84feab7c.css",
+    "main.js": "/react-mydrops/static/js/main.ae1b1f91.js",
+    "static/media/post_img.png": "/react-mydrops/static/media/post_img.906fa30c4b3afbdf4644.png",
+    "static/media/background.jpg": "/react-mydrops/static/media/background.c0f42c3d2aa62d9370ff.jpg",
+    "static/media/input_img.png": "/react-mydrops/static/media/input_img.b5f04928eb29aa6f7210.png",
+    "static/media/logo.png": "/react-mydrops/static/media/logo.9f84a4d07ab33f14309f.png",
+    "static/media/supp_vimeo.png": "/react-mydrops/static/media/supp_vimeo.3a4224e1ab40a376ffd1.png",
+    "static/media/supp_link.png": "/react-mydrops/static/media/supp_link.a93e2f2f740c21e0eb4f.png",
+    "static/media/supp_youtube.png": "/react-mydrops/static/media/supp_youtube.331fa144b78ff7ce46ca.png",
+    "static/media/supp_image.png": "/react-mydrops/static/media/supp_image.3699f6461c2a23162def.png",
+    "static/media/supp_etc.png": "/react-mydrops/static/media/supp_etc.5496783ee762b0d48f3c.png",
+    "index.html": "/react-mydrops/index.html",
+    "main.84feab7c.css.map": "/react-mydrops/static/css/main.84feab7c.css.map",
+    "main.ae1b1f91.js.map": "/react-mydrops/static/js/main.ae1b1f91.js.map"
   },
   "entrypoints": [
-    "static/css/main.d902bd39.css",
-    "static/js/main.40dedbe0.js"
+    "static/css/main.84feab7c.css",
+    "static/js/main.ae1b1f91.js"
   ]
 }

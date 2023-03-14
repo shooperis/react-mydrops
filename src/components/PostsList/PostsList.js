@@ -4,10 +4,6 @@ import NewbieTour from '../NewbieTour/NewbieTour';
 
 const PostsList = ({posts, onUpdatedPostsHandler}) => {
   const renderList = () => {
-    if (posts.length < 1) {
-      return <NewbieTour />;
-    }
-
     return posts.map((post, index) => 
       <PostItem 
         key={index} 
@@ -19,6 +15,10 @@ const PostsList = ({posts, onUpdatedPostsHandler}) => {
         onUpdatedPostsHandler={onUpdatedPostsHandler}
       />
     );
+  }
+
+  if (posts.length < 1) {
+    return <NewbieTour />;
   }
 
   return (

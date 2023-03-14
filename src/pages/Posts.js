@@ -24,7 +24,7 @@ const Posts = ({user}) => {
     } else {
       navigate("/login");
     }
-  }, [])
+  }, [posts])
 
   const onUpdatedPostsHandler = (data, method) => {
     if (method === 'delete') {
