@@ -1,8 +1,10 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { API_URL } from './utils/config';
-import { fetchData } from './utils/functions';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import UserContext from './store/user-context';
+
 import Wrapper from './components/Wrapper/Wrapper';
+
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Registration from './pages/Registration';
@@ -20,39 +22,24 @@ import AdminComments from './pages/admin/AdminComments';
 import AdminCommentDelete from './pages/admin/AdminCommentDelete';
 
 function App() {
-  const navigate = useNavigate();
-  const loggedUserKey = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState({});
+  const userCtx = useContext(UserContext);
 
-  async function initUser(key) {
-    const userData = (await fetchData(`${API_URL}/users?key=${key}&_embed=posts`))[0];
 
-    if (userData.id) {
-      setUser(userData);
-    } else {
-      navigate("/login");
-    }
-  }
-
-  useEffect(() => {
-    if (loggedUserKey) {
-      initUser(loggedUserKey);
-    }
-  }, [loggedUserKey])
+  console.log(userCtx);
 
   return (
     <>
-      {user.id && <UserMenu expanded={user.admin} />}
+      {userCtx.user.id && <UserMenu expanded={userCtx.user.admin} />}
       <Wrapper>
         <Routes>
-          <Route index element={user.id ? <Posts user={user.id} /> : <Login />} />
-          <Route path="/posts" element={<Posts user={user.id} />} />
+          <Route index element={userCtx.user.id ? <Posts /> : <Login />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="/post/:key" element={<Post />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<PageNotFound />} />
-          {user.admin && (
+          {userCtx.user.admin && (
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminUsers />} />
               <Route path="users" element={<AdminUsers />} />

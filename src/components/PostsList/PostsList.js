@@ -1,31 +1,31 @@
-import './PostsList.scss';
+import { useContext } from "react";
+import UserContext from "../../store/user-context";
 import PostItem from "./PostItem/PostItem";
-import NewbieTour from '../NewbieTour/NewbieTour';
+import NewbieTour from "../NewbieTour/NewbieTour";
 
-const PostsList = ({posts, onUpdatedPostsHandler}) => {
+import "./PostsList.scss";
+
+const PostsList = () => {
+  const userCtx = useContext(UserContext);
+
   const renderList = () => {
-    return posts.map((post, index) => 
-      <PostItem 
-        key={index} 
+    return userCtx.posts.map((post) => (
+      <PostItem
+        key={post.id}
         id={post.id}
-        keyId={post.key} 
-        content={post.type === 'youtube' || post.type === 'vimeo' ? post.additionalData : post.content} 
-        type={post.type} 
+        keyId={post.key}
+        content={post.type === "youtube" || post.type === "vimeo" ? post.additionalData : post.content}
+        type={post.type}
         createdDate={post.createdDate}
-        onUpdatedPostsHandler={onUpdatedPostsHandler}
       />
-    );
-  }
+    ));
+  };
 
-  if (posts.length < 1) {
+  if (userCtx.posts.length < 1) {
     return <NewbieTour />;
   }
 
-  return (
-    <div className="posts-list">
-      {renderList()}
-    </div>
-  )
-}
+  return <div className="posts-list">{renderList()}</div>;
+};
 
-export default PostsList
+export default PostsList;

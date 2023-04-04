@@ -1,39 +1,17 @@
 import './Posts.scss';
-import { API_URL } from './../utils/config';
-import { fetchData } from './../utils/functions';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../store/user-context';
 import PostsForm from '../components/PostsForm/PostsForm';
 import PostsList from '../components/PostsList/PostsList';
 import Logo from '../components/Logo/Logo';
 
-const Posts = ({user}) => {
+const Posts = () => {
+  const userCtx = useContext(UserContext);
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([]);
-  const [apiStatus, setApiStatus] = useState(false);
 
-  async function initPosts() {
-    const postsData = await fetchData(`${API_URL}/posts?userId=${user}&_sort=id&_order=desc`);
-    setPosts(postsData);
-    setApiStatus(true);
-  }
-
-  useEffect(() => {
-    if (user) {
-      initPosts();
-    } else {
-      navigate("/login");
-    }
-  }, [posts])
-
-  const onUpdatedPostsHandler = (data, method) => {
-    if (method === 'delete') {
-      setPosts(prevState => prevState.filter(post => post.id !== data));
-    }
-
-    if (method === 'create') {
-      setPosts(prevState => [data, ...prevState]);
-    }
+  if (!userCtx.user.key) {
+    navigate("/login");
   }
   
   return (
@@ -41,11 +19,11 @@ const Posts = ({user}) => {
       <header className="list-header">
         <Logo />
         
-        {user && <PostsForm user={user} onUpdatedPostsHandler={onUpdatedPostsHandler} />}
+        <PostsForm />
       </header>
 
       <main>
-        {(user && apiStatus) && <PostsList posts={posts} onUpdatedPostsHandler={onUpdatedPostsHandler} />}
+        <PostsList />
       </main>
     </>
   )

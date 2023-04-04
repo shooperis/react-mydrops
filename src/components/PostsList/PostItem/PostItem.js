@@ -1,51 +1,62 @@
-import { NavLink } from 'react-router-dom';
-import { API_URL } from './../../../utils/config';
-import { fetchData, prettyDate, postContentRender } from './../../../utils/functions';
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { API_URL } from "./../../../utils/config";
+import { fetchData, prettyDate, postContentRender } from "./../../../utils/functions";
+import UserContext from "./../../../store/user-context";
 
 const PostItem = (props) => {
-  const {id, keyId, content, type, createdDate, onUpdatedPostsHandler} = props;
-  let postTypeClass = '';
+  const userCtx = useContext(UserContext);
 
-  if (type === 'text') {
-    postTypeClass = 'text';
-  } else if (type === 'link') {
-    postTypeClass = 'link';
-  } else if (type === 'image') {
-    postTypeClass = 'image';
-  } else if (type === 'youtube' || type === 'vimeo' || type === 'soundcloud') {
-    postTypeClass = 'video';
+  const id = props.id;
+  const type = props.type;
+  let postTypeClass = "";
+
+  if (type === "text") {
+    postTypeClass = "text";
+  } else if (type === "link") {
+    postTypeClass = "link";
+  } else if (type === "image") {
+    postTypeClass = "image";
+  } else if (type === "youtube" || type === "vimeo" || type === "soundcloud") {
+    postTypeClass = "video";
   } else {
-    postTypeClass = 'unknown';
+    postTypeClass = "unknown";
   }
 
-  const onDeletePost = async id => {
-    await fetchData(`${API_URL}/posts/${id}`, {
-      method: 'DELETE'
-    });
+  const onDeletePost = async () => {
+    await fetchData(`${API_URL}/posts/${id}`, { method: "DELETE" });
 
-    onUpdatedPostsHandler(id, 'delete');
-  }
-  
+    userCtx.deletePost(id);
+  };
+
   return (
     <div className="post-item">
       <div className="detail">
-        <div className="type">
-          {type}
-        </div>
-        <div className="date">
-          {prettyDate(createdDate)}
-        </div>
+        <div className="type">{type}</div>
+        <div className="date">{prettyDate(props.createdDate)}</div>
       </div>
       <div className="control-wrapper">
-        <div className={'control' + (postTypeClass ? ` ${postTypeClass}` : '')}>
-          <NavLink className="open-post" to={`post/${keyId}`} title="Open this post">Open this post</NavLink>
-          <button className="delete-post" title="Delete this post" onClick={() => onDeletePost(id)}>Delete this post</button>
+        <div className={"control" + (postTypeClass ? ` ${postTypeClass}` : "")}>
+          <NavLink
+            className="open-post"
+            to={`post/${props.keyId}`}
+            title="Open this post"
+          >
+            Open this post
+          </NavLink>
+          <button
+            className="delete-post"
+            title="Delete this post"
+            onClick={onDeletePost}
+          >
+            Delete this post
+          </button>
           <i className="icon"></i>
         </div>
       </div>
-      {postContentRender(content, type)}
+      {postContentRender(props.content, type)}
     </div>
-  )
-}
+  );
+};
 
-export default PostItem
+export default PostItem;

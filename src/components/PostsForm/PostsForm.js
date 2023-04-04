@@ -1,10 +1,13 @@
 import './PostsForm.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
+import { v4 as uuid } from 'uuid';
 import { API_URL } from './../../utils/config';
 import { fetchData, getTimeStamp, getDataType, getDataTypeVideoId } from './../../utils/functions';
-import { v4 as uuid } from 'uuid';
+import UserContext from './../../store/user-context';
 
-const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent}) => {
+const PostsForm = (props) => {
+  const userCtx = useContext(UserContext);
+
   const [inputData, setInputData] = useState('');
   const [inputDataType, setInputDataType] = useState('');
   const [inputCenterClass, setInputCenterClass] = useState('');
@@ -38,7 +41,7 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
       return;
     }
 
-    if (postToEditId) {
+    if (props.postToEditId) {
       data = { 
         type: inputDataType,
         content: inputData
@@ -49,7 +52,7 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
         type: inputDataType,
         content: inputData,
         createdDate: getTimeStamp(),
-        userId: user,
+        userId: userCtx.user.id,
       };
     }
 
@@ -61,14 +64,15 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
       data.content = 'https://' + inputData;
     }
 
-    if (postToEditId) {
-      postResponse = await fetchData(`${API_URL}/posts/${postToEditId}`, {
+    if (props.postToEditId) {
+      postResponse = await fetchData(`${API_URL}/posts/${props.postToEditId}`, {
         method: 'PATCH',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
         body: JSON.stringify(data)
       });
 
-      onUpdatedPostsHandler(postResponse, 'edit');
+      props.onUpdatedPost(postResponse);
+      userCtx.editPost(postResponse);
     } else {
       postResponse = await fetchData(`${API_URL}/posts`, {
         method: 'POST',
@@ -76,7 +80,7 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
         body: JSON.stringify(data)
       });
 
-      onUpdatedPostsHandler(postResponse, 'create');
+      userCtx.createPost(postResponse);
     }
 
     if (postResponse) {
@@ -87,8 +91,8 @@ const PostsForm = ({user, onUpdatedPostsHandler, postToEditId, postToEditContent
   }
 
   useEffect(() => {
-    if (postToEditId && postToEditContent) {
-      onInputDataChange(postToEditContent);
+    if (props.postToEditId && props.postToEditContent) {
+      onInputDataChange(props.postToEditContent);
     }
   }, [])
 

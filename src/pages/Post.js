@@ -8,7 +8,7 @@ import PostsForm from '../components/PostsForm/PostsForm';
 import PostComments from '../components/PostComments/PostComments';
 
 const Post = () => {
-  let { key } = useParams();
+  const { key } = useParams();
   const loggedUserKey = JSON.parse(localStorage.getItem("user"));
   const [post, setPost] = useState({});
   const [postOwner, setPostOwner] = useState({});
@@ -43,14 +43,12 @@ const Post = () => {
     setEditPost(prevState => !prevState);
   }
 
-  const onUpdatedPostsHandler = (data, method) => {
-    if (method === 'edit') {
-      setPost(prevState => {
-        return {...prevState, content: data.content, type: data.type, additionalData: data.additionalData,}
-      });
+  const updatedPostsHandler = (data) => {
+    setPost(prevState => {
+      return {...prevState, content: data.content, type: data.type, additionalData: data.additionalData,}
+    });
 
-      setEditPost(false);
-    }
+    setEditPost(false);
   }
 
   return (
@@ -65,7 +63,7 @@ const Post = () => {
         <PostsForm 
           postToEditId={post.id}
           postToEditContent={post.content}
-          onUpdatedPostsHandler={onUpdatedPostsHandler}
+          onUpdatedPost={updatedPostsHandler}
         />
       )}
 
