@@ -9,10 +9,16 @@ const UserProvider = (props) => {
   const [userContext, setUserContext] = useState({
     user: {},
     posts: [],
+    indicator: {},
+    clearIndicator: () => {
+      setUserContext(prevState => {
+        return {...prevState, indicator: {}};
+      });
+    },
     createPost: (data) => {
       setUserContext(prevState => {
         const updatedPosts = [data, ...prevState.posts];
-        return {...prevState, posts: updatedPosts};
+        return {...prevState, posts: updatedPosts, indicator: {status: 'POST_CREATED', data: data.id}};
       });
     },
     deletePost: (data) => {

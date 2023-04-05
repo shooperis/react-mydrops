@@ -1,12 +1,12 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { API_URL } from "./../../../utils/config";
 import { fetchData, prettyDate, postContentRender } from "./../../../utils/functions";
 import UserContext from "./../../../store/user-context";
 
 const PostItem = (props) => {
+  const [animationClass, setAnimationClass] = useState("");
   const userCtx = useContext(UserContext);
-  const postItemRef = useRef();
 
   const id = props.id;
   const type = props.type;
@@ -25,21 +25,36 @@ const PostItem = (props) => {
   }
 
   const onDeletePost = async () => {
-    const postItem = postItemRef.current;
+    if (animationClass !== "hidden") {
+      setAnimationClass("hidden");
 
-    if(!postItem.classList.contains("deleting")) {
-      postItem.classList.add("deleting");
-  
       setTimeout(async () => {
         await fetchData(`${API_URL}/posts/${id}`, { method: "DELETE" });
-  
+
         userCtx.deletePost(id);
       }, 250);
     }
   };
 
+  useEffect(() => {
+    if (userCtx.indicator.status === "POST_CREATED") {
+      if (id === userCtx.indicator.data) {
+        setAnimationClass("hidden");
+
+        const timer = setTimeout(() => {
+          setAnimationClass("");
+          userCtx.clearIndicator();
+        }, 10);
+
+        return () => {
+          clearTimeout(timer);
+        };
+      }
+    }
+  }, []);
+
   return (
-    <div className="post-item" ref={postItemRef}>
+    <div className={`post-item ${animationClass}`}>
       <div className="detail">
         <div className="type">{type}</div>
         <div className="date">{prettyDate(props.createdDate)}</div>

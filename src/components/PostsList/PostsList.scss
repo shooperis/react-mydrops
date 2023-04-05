@@ -214,7 +214,7 @@
       }
     }
 
-    &.deleting {
+    &.hidden {
       opacity: 0;
       max-height: 0px;
       min-height: unset;
