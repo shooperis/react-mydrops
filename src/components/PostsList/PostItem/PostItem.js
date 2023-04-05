@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { API_URL } from "./../../../utils/config";
 import { fetchData, prettyDate, postContentRender } from "./../../../utils/functions";
@@ -6,6 +6,7 @@ import UserContext from "./../../../store/user-context";
 
 const PostItem = (props) => {
   const userCtx = useContext(UserContext);
+  const postItemRef = useRef();
 
   const id = props.id;
   const type = props.type;
@@ -24,13 +25,21 @@ const PostItem = (props) => {
   }
 
   const onDeletePost = async () => {
-    await fetchData(`${API_URL}/posts/${id}`, { method: "DELETE" });
+    const postItem = postItemRef.current;
 
-    userCtx.deletePost(id);
+    if(!postItem.classList.contains("deleting")) {
+      postItem.classList.add("deleting");
+  
+      setTimeout(async () => {
+        await fetchData(`${API_URL}/posts/${id}`, { method: "DELETE" });
+  
+        userCtx.deletePost(id);
+      }, 250);
+    }
   };
 
   return (
-    <div className="post-item">
+    <div className="post-item" ref={postItemRef}>
       <div className="detail">
         <div className="type">{type}</div>
         <div className="date">{prettyDate(props.createdDate)}</div>
