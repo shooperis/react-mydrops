@@ -1,0 +1,22 @@
+.loader {
+  font-size: 0px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 62px;
+    height: 62px;
+    background-image: url(../../../assets/images/loader.png);
+    background-repeat: no-repeat;
+    animation: loader 2.5s infinite linear;
+  }
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

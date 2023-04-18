@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { API_URL } from "./../../../utils/config";
-import { fetchData, prettyDate, postContentRender } from "./../../../utils/functions";
+import { prettyDate, postContentRender } from "./../../../utils/functions";
 import UserContext from "./../../../store/user-context";
+import useHttp from "../../../hooks/use-http";
 
 const PostItem = (props) => {
   const [animationClass, setAnimationClass] = useState("");
   const userCtx = useContext(UserContext);
+  const fetchData = useHttp();
 
   const id = props.id;
   const type = props.type;
@@ -29,7 +31,11 @@ const PostItem = (props) => {
       setAnimationClass("hidden");
 
       setTimeout(async () => {
-        await fetchData(`${API_URL}/posts/${id}`, { method: "DELETE" });
+        await fetchData({
+          url: `${API_URL}/posts/${id}`,
+          method: "DELETE",
+          actionOrigin: "DeletingPost",
+        });
 
         userCtx.deletePost(id);
       }, 250);

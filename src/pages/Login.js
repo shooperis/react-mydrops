@@ -3,12 +3,13 @@ import Logo from '../components/Logo/Logo';
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { API_URL } from './../utils/config';
-import { fetchData } from './../utils/functions';
 import bcrypt from 'bcryptjs-react';
+import useHttp from "../hooks/use-http";
 
 const Login = () => {
-  const navigate = useNavigate();
   const loggedUserKey = JSON.parse(localStorage.getItem("user"));
+  const fetchData = useHttp();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loggedUserKey) {
@@ -38,7 +39,12 @@ const Login = () => {
 
   async function tryToLogin(email, password) {
     const errorMessage = 'You enter bad email or password';
-    const userData = (await fetchData(`${API_URL}/users?email=${email}`))[0];
+    const userData = (
+      await fetchData({
+        url: `${API_URL}/users?email=${email}`,
+        actionOrigin: "UserLogin",
+      })
+    )[0];
     
     if (!userData) {
       setError(errorMessage);

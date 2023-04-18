@@ -3,12 +3,13 @@ import Logo from '../components/Logo/Logo';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { API_URL } from './../utils/config';
-import { fetchData, getTimeStamp } from './../utils/functions';
+import { getTimeStamp } from './../utils/functions';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcryptjs-react';
-
+import useHttp from "../hooks/use-http";
 
 const Registration = () => {
+  const fetchData = useHttp();
   const navigate = useNavigate();
 
   const [newUserData, setNewUserData] = useState({
@@ -40,10 +41,11 @@ const Registration = () => {
       createdDate: getTimeStamp()
     };
 
-    const userResponse = await fetchData(`${API_URL}/users`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify(data)
+    const userResponse = await fetchData({
+      url: `${API_URL}/users`,
+      method: "POST",
+      body: data,
+      actionOrigin: "UserRegistration"
     });
 
     if (userResponse.id) {
