@@ -10,7 +10,6 @@
 
   .post-item {
     min-height: 55px;
-    max-height: 450px;
     border: 1px solid #1C1C1C;
     border-top: 1px solid #0D0D0D;
     background-color: #1C1C1C;
@@ -25,7 +24,6 @@
     position: relative;
     overflow: hidden;
     margin-bottom: 40px;
-    transition: opacity .25s ease-in-out, max-height .25s ease-in-out, margin-bottom .25s ease-in-out;
 
     .detail {
       width: 100%;
@@ -214,11 +212,45 @@
       }
     }
 
-    &.hidden {
+    &.appear {
       opacity: 0;
-      max-height: 0px;
+    }
+
+    &.appear-active {
+      opacity: 1;
+      transition: opacity 250ms ease-in;
+    }
+
+    &.enter {
+      opacity: 0;
       min-height: unset;
+      max-height: 0px;
       margin-bottom: 0px;
+    }
+
+    &.enter-active {
+      opacity: 1;
+      min-height: 55px;
+      max-height: 450px;
+      margin-bottom: 40px;
+    }
+
+    &.exit {
+      opacity: 1;
+      min-height: 55px;
+      max-height: 450px;
+      margin-bottom: 40px;
+    }
+
+    &.exit-active {
+      opacity: 0;
+      min-height: unset;
+      max-height: 0px;
+      margin-bottom: 0px;
+    }
+
+    &.enter-active, &.exit-active {
+      transition: opacity .25s ease-in-out, max-height .25s ease-in-out, margin-bottom .25s ease-in-out;
     }
   }
 }
